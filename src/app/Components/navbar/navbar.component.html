@@ -1,0 +1,14 @@
+<div class="app-nav">
+  <div class="container">
+      <h1 id="siteBrand">Advokaterne</h1>
+    <nav>
+      <a routerLink="/Home" routerLinkActive="active">Home</a>
+      <a routerLink="/Services" routerLinkActive="active">Services</a>
+      <a routerLink="/Blog" routerLinkActive="active">Chefens Blog</a>
+      <a routerLink="/About" routerLinkActive="active">Om os</a>
+      <a routerLink="/Contact" routerLinkActive="active">Kontakt</a>
+      <a *ngIf="authService.isUserAuthenticated()" routerLink="/Admin" routerLinkActive="active">Admin</a>
+      <a *ngIf="authService.isUserAuthenticated()" (click)="authService.logout()">Log ud</a>
+    </nav>
+  </div> 
+</div>

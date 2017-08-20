@@ -1,0 +1,7 @@
+<h1>Billeder</h1>
+<a routerLink="/Admin/Media/Add" class="btn btn-outline-primary">Tilføj nyt billede</a>
+<hr>
+<div *ngFor="let item of mediaList">
+  <img src="{{item}}" alt="Test" height="120" width="120" class="img-thumbnail">
+  
+</div>

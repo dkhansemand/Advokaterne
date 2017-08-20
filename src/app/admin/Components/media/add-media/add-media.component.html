@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Billedeupload</h3>
+            <form>
+                <div class="form-group col-sm-6">
+                    <label for="multiple">Flere</label>
+                    <input type="file" class="form-control-file" name="multiple" ng2FileSelect [uploader]="uploader" multiple  />
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="single">Enkelt</label>
+                    <input type="file" class="form-control-file" name="single" ng2FileSelect [uploader]="uploader" />                                  
+                </div>            
+            </form>
+            <div *ngIf="uploadErrors.length > 0" class="alert alert-danger" role="alert">
+                <ul *ngFor="let error of uploadErrors">
+                    <li>{{error}}</li>
+                </ul>
+            </div>
+            <div *ngIf="uploadSuccess.length > 0" class="alert alert-success" role="alert">
+                <ul *ngFor="let msg of uploadSuccess">
+                    <li>{{msg}}</li>
+                </ul>
+            </div>
+            <h5>Filer i kø: {{ uploader?.queue?.length }}</h5>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">Filnavn</th>
+                    <th>Størrelse (KB)</th>
+                    <th>Overført %</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item.file.name }}</strong></td>
+                    <td nowrap>{{ item.file.size/1024 | number:'.2' }} KB</td>
+                    <td>
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">{{item.progress}}%</div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span *ngIf="item.isSuccess"><i class="fa fa-check fa-2x"></i></span>
+                        <span *ngIf="item.isCancel"><i class="fa fa-ban fa-2x"></i></span>
+                        <span *ngIf="item.isError"><i class="fa fa-exclamation-triangle fa-2x"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-sm"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Anullér
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm"
+                                (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Fjern
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div>
+                    Kø overført %:
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">{{uploader.progress}}%</div>
+                    </div>
+                </div><br>
+                <button type="button" class="btn btn-success btn-sm"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload alle
+                </button>
+                <button type="button" class="btn btn-warning btn-sm"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Anullér alle
+                </button>
+                <button type="button" class="btn btn-danger btn-sm"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Fjern alle
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

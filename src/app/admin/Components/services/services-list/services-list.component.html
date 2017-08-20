@@ -1,0 +1,22 @@
+<h2>Services</h2>
+<a routerLink="/Admin/Services/New" class="btn btn-outline-primary">Tilføj ny service</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Titel</th>
+      <th>Billede</th>
+      <th>Ret/Slet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let service of serviceList[0]">
+      <td>{{service.serviceName}}</td>
+      <td>{{service.servicePicture || 'Intet billede'}}</td>
+      <td>
+        <a [routerLink]="['/Admin/Services/Edit/', service.serviceId]" class="btn btn-sm btn-primary">Ret</a>
+        <button class="btn btn-sm btn-danger" (click)="deleteId(service.serviceId)">Slet</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

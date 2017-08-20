@@ -1,0 +1,113 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --primary-text-color: #58595b;
+    --primary-border: 1.5px solid var(--primary-text-color);
+}
+*{
+    box-sizing: border-box; 
+}
+body{
+    background-color: rgb(232, 232, 232);    
+    font-family: Verdana;
+    font-size: 12px;
+    color: var(--primary-text-color);
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: var(--primary-text-color);
+}
+h1{
+    font-size: 28px;
+}
+h2{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.app-nav{
+    background-color: #000;
+    height: 120px;
+    width: 100%;
+    padding-top: 40px;
+}
+.app-nav .container{
+    display: grid;
+    grid-auto-columns: 1fr 1fr; 
+}
+.app-nav h1{
+    grid-column: 1/1;
+    color: #fff;
+    font-size: 36px;
+    margin: 0 10px;
+    text-transform: uppercase;
+}
+.app-nav nav{
+    grid-column-start: 2;
+    width: 100%; 
+}
+.app-nav a {
+    color: #a1a1a1;
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.2em;
+}
+.app-nav a:hover{
+    color: #fff;
+}
+.app-nav a.active{
+    color: #fff;
+    text-decoration: none;
+}
+
+#homeComponent > h1 {
+    font-size: 48px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#homeComponent > section{
+    border-top: var(--primary-border);
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    grid-column-gap: 20px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+#homeComponent > section section:nth-child(2) article{
+    padding: 10px;
+    border-bottom: var(--primary-border);
+}
+#homeComponent > section section:nth-child(2) form{
+    padding: 10px;
+}
+
+#homeComponent form input{
+    border: 0;
+    padding: 8px;
+    width: 80%;
+}
+
+#homeComponent form button {
+    background-color: #000;
+    border: 0;
+    color: #fff;
+    padding: 8px;
+}
+
+footer{
+    border-top: var(--primary-border);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+footer a {
+    margin: 5px;
+}
+
+.valid {
+    border: 1px solid #5f0;
+}
+.invalid {
+    border: 1px solid #f50;
+}

@@ -1,0 +1,24 @@
+<h2>Tilføj service</h2>
+
+<div class="row">
+    <form class="col-sm-8">
+      <div *ngIf="addError" class="alert alert-danger" role="alert">
+        <h2>Fejl</h2>
+        <p>Felterne er ikke udfyldt korrekt</p>
+      </div>
+      <div *ngIf="addSuccess" class="alert alert-success" role="alert">
+          <h2>Tilføjet!</h2>
+          <p>Servicen er nu blevet tilføjet</p>
+        </div>
+      <div class="form-group">
+        <label for="serviceName">Service navn</label>
+        <input type="text" [(ngModel)]="service.name" name="serviceName" [ngClass]="{'valid': service.name !== '', 'invalid': formEmpty && !validName(service.name)}" class="form-control" value="{{service.name}}" required>
+        <p *ngIf="!validName(service.name)" id="nameError" class="form-text" [style.color]="red">Service navn må maks. være x tegn</p>
+      </div>
+      <div class="form-group">
+        <label for="serviceContent">Service beskrivelse</label>
+        <textarea [(ngModel)]="service.content" col="10" rows="10" name="serviceContent" [ngClass]="{'valid': service.content !== '', 'invalid': formEmpty}" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-info pull-right" (click)="addService()">Tilføj</button>
+    </form>
+  </div>
