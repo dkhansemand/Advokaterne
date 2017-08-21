@@ -38,7 +38,7 @@ class mediacontroller extends DB{
 
             $fileName = time() . '_' . substr($file['name'], 0, 100);
             $fileName = str_replace(' ', '', $fileName);
-            $relPath = '../backend/uploads/';
+            $relPath = '/uploads/';
             if(move_uploaded_file($file['tmp_name'], $this->uploadFolder . $fileName)){
                 $queryInsertPicture = $this->prepQuery("INSERT INTO media (filename, filePath, fileType)VALUES(:NAME, :FPATH, :FTYPE)");
                 $queryInsertPicture->bindParam(':NAME', $fileName, PDO::PARAM_STR);
