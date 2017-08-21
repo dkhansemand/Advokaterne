@@ -1,0 +1,9 @@
+#blogComponent{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+#blogComponent > section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 10px;
+}

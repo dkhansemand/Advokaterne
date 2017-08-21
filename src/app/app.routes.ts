@@ -20,7 +20,9 @@ import { EditServiceComponent } from './admin/Components/services/edit-service/e
 import { NewServiceComponent } from './admin/Components/services/new-service/new-service.component';
 import { ListMediaComponent } from './admin/Components/media/list-media/list-media.component';
 import { AddMediaComponent } from './admin/Components/media/add-media/add-media.component';
-
+import { BlogPostsComponent } from './admin/Components/blog/blog-posts/blog-posts.component';
+import { AddPostComponent } from './admin/Components/Blog/add-post/add-post.component';
+import { EditPostComponent } from './admin/Components/Blog/edit-post/edit-post.component';
 
 export const RouterConfig : Routes = [
   {
@@ -52,6 +54,18 @@ export const RouterConfig : Routes = [
     component: AdminHomeComponent,
     canActivate: [CanActivateRouteGuard],
     children : [
+      {
+        path: 'Blog/Posts',
+        component: BlogPostsComponent
+      },
+      {
+        path: 'Blog/Post/Add',
+        component: AddPostComponent
+      },
+      {
+        path: 'Blog/Post/Edit/:id',
+        component: EditPostComponent
+      },
         {
             path: 'Dashboard',
             component: DashboardComponent

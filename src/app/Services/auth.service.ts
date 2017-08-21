@@ -21,6 +21,7 @@ export class AuthService {
           return false
         }else{
           localStorage.setItem(this.TOKEN_KEY, resdata.data.token)
+          //console.log('token decoded', atob(resdata.data.token))
           this.router.navigate(['Admin/Dashboard'])
         }
       })
@@ -29,6 +30,12 @@ export class AuthService {
   logout(){
     localStorage.clear();
     this.router.navigate(['Admin-Login'])
+  }
+
+  getUserRole(){
+     let token = atob(localStorage.getItem(this.TOKEN_KEY))
+     let tokenO = JSON.parse(token)
+     return tokenO.role
   }
 
   isUserAuthenticated() : boolean{

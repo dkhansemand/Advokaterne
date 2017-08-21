@@ -1,0 +1,23 @@
+<h1>Nyt blog indlæg</h1>
+<div class="row">
+    <form class="col-sm-8">
+      <div *ngIf="addError" class="alert alert-danger" role="alert">
+        <h2>Fejl</h2>
+        <p>Felterne er ikke udfyldt korrekt</p>
+      </div>
+      <div *ngIf="addSuccess" class="alert alert-success" role="alert">
+          <h2>Tilføjet!</h2>
+          <p>Blog indlægget er nu blevet tilføjet</p>
+        </div>
+      <div class="form-group">
+        <label for="blogTitle">Overskrift</label>
+        <input type="text" [(ngModel)]="blogPost.title" name="blogTitle" [ngClass]="{'valid': blogPost.title !== '', 'invalid': formEmpty}" class="form-control" value="{{blogPost.title}}" required>
+        <p *ngIf="blogPost.title.length <= 25" id="titleError" class="form-text">Titel må maks. være 25 tegn</p>
+      </div>
+      <div class="form-group">
+        <label for="blogContent">Indhold</label>
+        <textarea [(ngModel)]="blogPost.content" col="10" rows="10" name="blogContent" [ngClass]="{'valid': blogPost.content !== '', 'invalid': formEmpty}" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-info pull-right" (click)="addPost()">Tilføj</button>
+    </form>
+  </div>
