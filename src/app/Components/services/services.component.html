@@ -1,3 +1,16 @@
-<p>
-  services works!
-</p>
+<div class="container" id="servicesComponent">
+    <h1 class="text-center">
+      Dette er hvad vi tilbyder - Vores services
+    </h1>
+    <section>
+      <h2>Dette er en liste over vores services</h2>
+      <small>En kort beskrivelse af hvad "advokaterne" tilbyder af services</small>
+      <br><br>
+      <div class="serviceList">
+          <div class="serviceItem" *ngFor="let service of serviceList">
+            <h3>{{service.serviceName}}</h3>
+            <p>{{service.serviceContent}}</p>
+          </div>
+      </div>
+    </section>
+</div>

@@ -1,0 +1,27 @@
+#servicesComponent > h1 {
+    margin-top: 100px;
+}
+
+#servicesComponent > section{
+    border-top: var(--primary-border);
+    margin: 10px 0;
+    padding: 40px 10px;
+}
+
+#servicesComponent > section .serviceList{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+    margin: 50px 0;
+}
+
+#servicesComponent .serviceItem {
+    border-bottom: var(--primary-border);
+    margin-bottom: 20px;
+}
+
+#servicesComponent .serviceItem:nth-last-child(1),
+#servicesComponent .serviceItem:nth-last-child(2)
+{
+    border-bottom: 0;
+}

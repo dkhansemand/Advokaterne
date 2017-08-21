@@ -8,6 +8,7 @@ import { Keyobject } from './mainPipe'
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload'
 //Import of Services
 import { AuthService } from './Services/auth.service'
+import { GetService } from './Services/get-service.service'
 import { AdminGetService } from './admin/Services/admin-get.service'
 import { AdminPostService } from './admin/Services/admin-post.service'
 import { AdminDeleteService } from './admin/Services/admin-delete.service'
@@ -67,6 +68,7 @@ import { AddMediaComponent } from './admin/Components/media/add-media/add-media.
   ],
   providers: [
     AuthService,
+    GetService,
     CanActivateRouteGuard,
     AdminGetService,
     AdminPostService,

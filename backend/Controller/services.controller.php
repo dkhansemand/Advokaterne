@@ -8,7 +8,7 @@ class servicescontroller extends DB {
 
     public function get_list(){
         
-        $queryServices = $this->prepQuery("SELECT serviceId, serviceName, servicePicture FROM services");
+        $queryServices = $this->prepQuery("SELECT serviceId, serviceName, serviceContent, servicePicture FROM services");
         if($queryServices->execute()){
             return ['err' => false, 'data' => $queryServices->fetchAll(PDO::FETCH_OBJ)];
         }
