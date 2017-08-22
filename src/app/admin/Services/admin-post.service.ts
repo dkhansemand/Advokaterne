@@ -45,4 +45,20 @@ export class AdminPostService {
     return this.http.post(AppConfig.api + '/blog/post/editcategory', body).map((res : Response) => res.json())
   }
 
+  addBlogPost(blogData : any){
+    let pictureId : any
+    if(blogData.picture == ''){
+      pictureId = 0
+    }else{
+      pictureId = blogData.picture.id
+    }
+    let body = new FormData()
+    body.append('title', blogData.title)
+    body.append('content', blogData.content)
+    body.append('category', blogData.category)
+    body.append('picture', pictureId)
+    body.append('publish', blogData.publish)
+    return this.http.post(AppConfig.api + '/blog/post/newPost', body).map((res : Response) => res.json())
+  }
+
 }

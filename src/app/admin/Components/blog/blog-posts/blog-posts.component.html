@@ -3,4 +3,24 @@
 </h1>
 <a routerLink="/Admin/Blog/Post/Add" class="btn btn-outline-primary">Tilføj nyt blog-indlæg</a>
 <hr>
-
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Titel</th>
+        <th>Dato</th>
+        <th>Udgivet/Kladde</th>
+        <th>Ret/Slet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of blogPostList">
+        <td>{{post.postTitle}}</td>
+        <td>{{post.postedDate}}</td>
+        <td>{{post.postPublished == 1 ? 'Udgivet' : 'kladde'}}</td>
+        <td>
+            <a [routerLink]="['/Admin/Blog/Post/Edit/', post.postID]" class="btn btn-sm btn-primary">Ret</a>
+            <button class="btn btn-sm btn-danger" >Slet</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

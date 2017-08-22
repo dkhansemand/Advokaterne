@@ -68,8 +68,10 @@ class mediacontroller extends DB{
             $mediaItems = $queryMedia->fetchAll(PDO::FETCH_OBJ);
             $mediaList = [];
             foreach($mediaItems as $media){
-                if(file_get_contents('./uploads/'.$media->filename)){
-                    array_push($mediaList, ['id' => $media->mediaId,'file' => $media->filePath.$media->filename]);
+                if($media->mediaId != 0){
+                    if(file_get_contents('./uploads/'.$media->filename)){
+                        array_push($mediaList, ['id' => $media->mediaId,'file' => $media->filePath.$media->filename]);
+                    }
                 }
             }
             return ['err' => false, 'data' => $mediaList];
