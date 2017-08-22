@@ -24,4 +24,8 @@ export class AdminGetService {
     return this.http.get(AppConfig.api + '/media/get/list').map((res : Response) => res.json())
   }
 
+  getCategories(){
+    return this.http.get(AppConfig.api + '/blog/get/categories').map((res : Response) => res.json());
+  }
+
 }

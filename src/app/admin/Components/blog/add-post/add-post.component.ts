@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppConfig } from '../../../../app.config'
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class AddPostComponent implements OnInit {
 
   constructor() { }
+  mediaPath = AppConfig.mediaUrl
+
   formEmpty : boolean = false
   blogPost = {
     title : '',
@@ -25,11 +27,22 @@ export class AddPostComponent implements OnInit {
       this.formEmpty = true
     }
   }
+
   reset(){
     this.blogPost = {
       title : '',
       content : '',
       picture : ''
     }
+  }
+
+  getMedia(item : any){
+    document.getElementById("btnClose").click()
+    this.blogPost.picture = item
+    console.log('ITEM: ', item)
+  }
+
+  removeMediaItem(){
+    this.blogPost.picture = ''
   }
 }

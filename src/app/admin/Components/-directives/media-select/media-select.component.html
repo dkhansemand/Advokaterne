@@ -1,0 +1,9 @@
+<h1>Billeder</h1>
+
+<div class="row">
+  <div *ngFor="let item of mediaList" class="col-sm-4">
+    <img src="{{mediaPath+item.file}}" alt="Test" class="img-thumbnail" (click)="itemId({id: item.id, file:item.file})">
+    
+  </div>
+
+</div>

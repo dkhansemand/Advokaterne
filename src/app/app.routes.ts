@@ -23,6 +23,7 @@ import { AddMediaComponent } from './admin/Components/media/add-media/add-media.
 import { BlogPostsComponent } from './admin/Components/blog/blog-posts/blog-posts.component';
 import { AddPostComponent } from './admin/Components/Blog/add-post/add-post.component';
 import { EditPostComponent } from './admin/Components/Blog/edit-post/edit-post.component';
+import { CategoriesComponent } from './admin/Components/Blog/categories/categories.component';
 
 export const RouterConfig : Routes = [
   {
@@ -65,6 +66,10 @@ export const RouterConfig : Routes = [
       {
         path: 'Blog/Post/Edit/:id',
         component: EditPostComponent
+      },
+      {
+        path: 'Blog/Categories',
+        component: CategoriesComponent
       },
         {
             path: 'Dashboard',

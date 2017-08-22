@@ -18,6 +18,35 @@
         <label for="blogContent">Indhold</label>
         <textarea [(ngModel)]="blogPost.content" col="10" rows="10" name="blogContent" [ngClass]="{'valid': blogPost.content !== '', 'invalid': formEmpty}" class="form-control" required></textarea>
       </div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mediaModalSelector">
+          Tilføj billede
+        </button>
+        <div *ngIf="blogPost.picture !== ''">
+          <button type="button" class="close" aria-label="Close" (click)="removeMediaItem()">
+              <span aria-hidden="true"><small>Fjern billede &times;</small></span>
+            </button>
+            <img src="{{mediaPath+blogPost.picture.file}}" alt="Test" class="img-thumbnail">
+        </div>
+        <br>
       <button type="submit" class="btn btn-info pull-right" (click)="addPost()">Tilføj</button>
     </form>
   </div>
+
+  <div class="modal" id="mediaModalSelector">
+      <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <app-media-select (selectedItem)="getMedia($event)"></app-media-select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

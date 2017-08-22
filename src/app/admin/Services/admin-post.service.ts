@@ -32,4 +32,17 @@ export class AdminPostService {
     return this.http.post(AppConfig.api + '/services/post/addservice', body).map((res:Response) => res.json())
   }
 
+  addcategory(categoryData : any){
+    let body = new FormData()
+    body.append('name', categoryData.name)
+    return this.http.post(AppConfig.api+'/blog/post/category', body).map((res:Response) => res.json())
+  }
+
+  editCategory(catId : any, catName : string){
+    let body = new FormData()
+    body.append('catId', catId)
+    body.append('name', catName)
+    return this.http.post(AppConfig.api + '/blog/post/editcategory', body).map((res : Response) => res.json())
+  }
+
 }

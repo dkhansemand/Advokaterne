@@ -5,7 +5,12 @@
             <ul>
                 <li><a routerLink="/Admin/Dashboard" routerLinkActive="active">Dashboard</a></li>
                 <li><a routerLink="/Admin/Media" routerLinkActive="active">Billeder</a></li>
-                <li><a routerLink="/Admin/Blog/Posts" routerLinkActive="active">Blog</a></li>
+                <li><a routerLink="/Admin/Blog/Posts" routerLinkActive="active">Blog</a>
+                    <ul>
+                        <li><a routerLink="/Admin/Blog/Categories" routerLinkActive="active">Kategorier</a></li>
+                        <li><a routerLink="/Admin/Blog/Post/Add" routerLinkActive="active">Nyt indlæg</a></li>
+                    </ul>
+                </li>
                 <li><a routerLink="/Admin/Services" routerLinkActive="active">Services</a></li>
             </ul>
         </nav>

@@ -37,6 +37,8 @@ import { AddMediaComponent } from './admin/Components/media/add-media/add-media.
 import { BlogPostsComponent } from './admin/Components/blog/blog-posts/blog-posts.component';
 import { AddPostComponent } from './admin/Components/Blog/add-post/add-post.component';
 import { EditPostComponent } from './admin/Components/Blog/edit-post/edit-post.component';
+import { MediaSelectComponent } from './admin/Components/-directives/media-select/media-select.component';
+import { CategoriesComponent } from './admin/Components/Blog/categories/categories.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { EditPostComponent } from './admin/Components/Blog/edit-post/edit-post.c
     FileSelectDirective,
     BlogPostsComponent,
     AddPostComponent,
-    EditPostComponent
+    EditPostComponent,
+    MediaSelectComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,9 @@
         <p>Felterne er ikke udfyldt korrekt</p>
       </div>
       <div *ngIf="addSuccess" class="alert alert-success" role="alert">
-          <h2>Tilføjet!</h2>
-          <p>Servicen er nu blevet tilføjet</p>
-        </div>
+        <h2>Tilføjet!</h2>
+        <p>Servicen er nu blevet tilføjet</p>
+      </div>
       <div class="form-group">
         <label for="serviceName">Service navn</label>
         <input type="text" [(ngModel)]="service.name" name="serviceName" [ngClass]="{'valid': service.name !== '', 'invalid': formEmpty && !validName(service.name)}" class="form-control" value="{{service.name}}" required>

@@ -1,0 +1,35 @@
+<h1>Kategorier</h1>
+<div *ngIf="addError" class="alert alert-danger" role="alert">
+  <h2>Fejl</h2>
+  <p>{{errMsg}}</p>
+</div>
+<div *ngIf="addSuccess" class="alert alert-success" role="alert">
+  <h2>Tilføjet!</h2>
+  <p>Kategorien er nu blevet tilføjet</p>
+</div>
+<form class="form-inline col-sm-6">
+  <div class="form-group">
+    <label for="categoryName">kategori navn: &nbsp; &nbsp;</label>
+    <input type="text" [(ngModel)]="category.name" name="categoryName" class="form-control" id="categoryName">
+    <button class="btn btn-outline-primary btn-sm" (click)="addCategory()">Tilføj ny kategori</button>
+  </div>
+</form>
+<br><br><br>
+
+    <ul class="list-group col-sm-6" *ngFor="let category of categoryList">
+        <li class="list-group-item list-group-item-action">
+          <div>
+            {{category.categoryName}}
+            <button class="btn btn-link pull-right" (click)="deleteCategory(category.categoryId)"><span class="fa fa-trash fa-2x text-danger"></span></button>
+            <button class="btn btn-link pull-right" (click)="showEditId = category.categoryId; edit.name = category.categoryName"><span class="fa fa-pencil fa-2x text-info"></span></button>
+          </div><br>
+          <div *ngIf="showEditId == category.categoryId">
+              <form class="form-inline col-sm-6">
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="edit.name" name="categoryName" class="form-control" id="categoryName">
+                    <button class="btn btn-outline-primary btn-sm" (click)="editCategory(category.categoryId)">Ret</button>
+                  </div>
+                </form>
+          </div>
+        </li>
+    </ul>
