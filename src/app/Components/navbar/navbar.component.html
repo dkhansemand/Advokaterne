@@ -1,14 +1,34 @@
-<div class="app-nav">
-  <div class="container">
-      <h1 id="siteBrand">Advokaterne</h1>
-    <nav>
-      <a routerLink="/Home" routerLinkActive="active">Home</a>
-      <a routerLink="/Services" routerLinkActive="active">Services</a>
-      <a routerLink="/Blog" routerLinkActive="active">Chefens Blog</a>
-      <a routerLink="/About" routerLinkActive="active">Om os</a>
-      <a routerLink="/Contact" routerLinkActive="active">Kontakt</a>
-      <a *ngIf="authService.isUserAuthenticated()" routerLink="/Admin" routerLinkActive="active">Admin</a>
-      <a *ngIf="authService.isUserAuthenticated()" (click)="authService.logout()">Log ud</a>
-    </nav>
-  </div> 
-</div>
+<nav class="navbar navbar-expand-md">
+    <button class="navbar-toggler border border-white text-white" type="button" data-toggle="collapse" data-target="#navbarTogglerMenu" aria-controls="navbarTogglerMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon text-white">Menu</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerMenu">
+      <div class="container">
+        <a class="navbar-brand text-uppercase" routerLink="/">Advokaterne</a>
+        <ul class="navbar-nav  pull-right">
+          <li class="nav-item">
+              <a routerLink="/Home" class="nav-link" routerLinkActive="active">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/Services" class="nav-link" routerLinkActive="active">Services</a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/Blog" class="nav-link" routerLinkActive="active">Chefens Blog</a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/About" class="nav-link" routerLinkActive="active">Om os</a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/Contact" class="nav-link" routerLinkActive="active">Kontakt</a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isUserAuthenticated()">
+              <a class="nav-link" routerLink="/Admin" routerLinkActive="active">Admin</a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isUserAuthenticated()">
+              <a   class="nav-link" (click)="authService.logout()">Log ud</a>
+          </li>
+        </ul>
+      </div>
+     
+    </div>
+  </nav>

@@ -80,4 +80,16 @@ export class AdminPostService {
     return this.http.post(AppConfig.api + '/blog/post/editpost', body).map( (res : Response) => res.json())
   }
 
+  settingsSave(settings : any){
+    let body = new FormData()
+    body.append('street', settings.siteStreet)
+    body.append('city', settings.siteCity)
+    body.append('zip', settings.siteZip)
+    body.append('sitePhone', settings.sitePhone)
+    body.append('sitePhoneSec', settings.sitePhoneSec)
+    body.append('email', settings.siteEmail)
+    body.append('defaultContact', settings.siteDefaultContact)
+    return this.http.post(AppConfig.api + '/settings/save/all', body).map((res : Response) => res.json())
+  }
+
 }

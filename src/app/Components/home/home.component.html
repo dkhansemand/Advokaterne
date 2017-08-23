@@ -3,14 +3,14 @@
     Vi er billige & <br>
     Vi tager alle opgaver store som små
   </h1>
-  <section>
-    <section>
+  <section class="row">
+    <section class="col-sm-12 col-md-8">
       <div class="row">
         <h2 class="col-sm-12">Services</h2>
         <article class="col-sm-6" *ngFor="let service of serviceList; let i = index">
           <div *ngIf="i < 4">
             <figure>
-              <img [src]="mediaPath+mediaList[i].filePath+mediaList[i].filename" alt="Billede tag">
+              <img [src]="mediaPath+mediaList[i].filePath+mediaList[i].filename" class="border border-dark" alt="Billede tag">
             </figure>
             <p>{{service.serviceShortdesc}}</p>
           </div>
@@ -21,34 +21,34 @@
         <hr>
       
         <div class="row">
-            <h2 class="col-sm-12">Chefens blog</h2>
+          <div class="col-sm-12">
+            <h2>Chefens blog</h2>
             <div *ngFor="let post of blogList; let i = index">
               <article class="col-sm-12" *ngIf="i < 3">
                 <div class="row">
-                  <figure class="col-sm-1">
+                  <figure class="col-sm-2">
                       <img [src]="mediaPath+post.filePath+post.filename" width="100" height="100" alt="Agent">
                     </figure>
                     <div class="col-sm-8">
                       <h5>{{post.postTitle}}</h5>
                       <p>{{post.postedDate}}</p>
-                      <p class=" col-sm-4" [innerHTML]="post.postContent">
-                        
-                      </p>
+                      <p class="text-justify">{{'post.postContent'}}</p>
                     </div>
-      
                 </div>
               </article>
             </div>
+
+          </div>
           
         </div>
     
       
     </section>
-    <section>
+    <section class="col-sm-12 col-md-4">
       <article>
         <h2>Om os</h2>
         <figure>
-          <img src="/assets/media/people.jpg" alt="Om os">
+          <img src="/assets/media/people.jpg" width="250" alt="Om os">
         </figure>
         <p>Lorem ipsum dolor sit amet.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, consectetur!</p>

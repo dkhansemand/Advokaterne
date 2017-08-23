@@ -25,7 +25,7 @@ h2{
     font-weight: bold;
 }
 
-.app-nav{
+/* .app-nav{
     background-color: #000;
     height: 120px;
     width: 100%;
@@ -58,14 +58,15 @@ h2{
 .app-nav a.active{
     color: #fff;
     text-decoration: none;
-}
+} */
 
-#homeComponent > h1 {
+ #homeComponent > h1 {
+     border-bottom: var(--primary-border);
     font-size: 48px;
     text-align: center;
     text-transform: uppercase;
 }
-
+/*
 #homeComponent > section{
     border-top: var(--primary-border);
     display: grid;
@@ -78,9 +79,13 @@ h2{
     grid-column-end: 2;
     overflow-wrap: break-word;
     max-width: 100vh;
+} */
+#homeComponent section:nth-of-type(1){
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 #homeComponent > section section:nth-child(2) article{
-    padding: 10px;
+    padding: 5px;
     border-bottom: var(--primary-border);
 }
 #homeComponent > section section:nth-child(2) form{

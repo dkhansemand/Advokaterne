@@ -10,8 +10,37 @@
           <p>Indstillingerne er nu blevet gemt</p>
       </div>
       <div class="form-group">
-        <label for="address">Adresse</label>
-        <input type="text" [(ngModel)]="settings.addr" name="address" [ngClass]="{'valid': settings.addr !== '', 'invalid': formEmpty}" class="form-control" required>
-        <p *ngIf="settings.addr.length <= 25" id="titleError" class="form-text">Adressen er ikke i korrekt format</p>
+          <h5>Adresse</h5>
+        <label for="street">Vejnavn:</label>
+        <input type="text" [(ngModel)]="settingsList.siteStreet" name="siteStreet" [ngClass]="{'valid': settingsList.siteStreet !== '', 'invalid': formEmpty}" class="form-control" required>
+        <p *ngIf="settingsList.siteStreet.length >= 25"  class="form-text">Vejnavn er ikke i korrekt format</p>
+        <br>
+        <label for="city">By</label>
+        <input type="text" [(ngModel)]="settingsList.siteCity" name="siteCity" [ngClass]="{'valid': settingsList.siteCity !== '', 'invalid': formEmpty}" class="form-control col-sm-6" required>
+        <p *ngIf="settingsList.siteCity.length > 25" class="form-text">By er ikke i korrekt format</p>
+        <label for="city">Post nr.</label>
+        <input type="text" [(ngModel)]="settingsList.siteZip" name="siteZip" [ngClass]="{'valid': settingsList.siteZip !== '', 'invalid': formEmpty}" class="form-control col-sm-4" required>
+        <p *ngIf="settingsList.siteZip.length > 5" class="form-text">Post nr. er ikke i korrekt format</p>
       </div>
+      <div class="form-group">
+        <label for="phone">Primær Tlf nr.</label>
+        <input type="text" [(ngModel)]="settingsList.sitePhone" name="sitePhone" [ngClass]="{'valid': settingsList.sitePhone !== '', 'invalid': formEmpty}" class="form-control col-sm-8" required>
+        <p *ngIf="settingsList.sitePhone.length > 20" class="form-text">Tlf nr. er ikke i korrekt format</p>
+      </div>
+      <div class="form-group">
+        <label for="secPhone">Sekundær Tlf nr.</label>
+        <input type="text" [(ngModel)]="settingsList.sitePhoneSec" name="sitePhoneSec" [ngClass]="{'valid': settingsList.sitePhoneSec !== '', 'invalid': formEmpty}" class="form-control col-sm-8" required>
+        <p *ngIf="settingsList.sitePhoneSec.length > 20" class="form-text">Tlf nr. er ikke i korrekt format</p>
+    </div>
+    <div class="form-group">
+        <label for="email">Email.</label>
+        <input type="email" [(ngModel)]="settingsList.siteEmail" name="siteEmail" [ngClass]="{'valid': settingsList.siteEmail !== '', 'invalid': formEmpty}" class="form-control col-sm-10" required>
+        <p *ngIf="false" class="form-text">email er ikke i korrekt format</p>
+    </div>
+    <div class="form-group">
+            <label for="email">Kontaktformular Email.</label>
+            <input type="email" [(ngModel)]="settingsList.siteDefaultContact" name="siteDefaultContact" [ngClass]="{'valid': settingsList.siteDefaultContact !== '', 'invalid': formEmpty}" class="form-control col-sm-10" required>
+            <p *ngIf="false" class="form-text">email er ikke i korrekt format</p>
+        </div>
+        <button type="submit" class="btn btn-lg btn-success pull-left" (click)="saveSettings()">Gem</button>
 </form>
