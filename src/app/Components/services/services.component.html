@@ -2,12 +2,14 @@
     <h1 class="text-center">
       Dette er hvad vi tilbyder - Vores services
     </h1>
-    <section>
-      <h2>Dette er en liste over vores services</h2>
-      <small>En kort beskrivelse af hvad "advokaterne" tilbyder af services</small>
+    <section class="row">
+      <div class="col-sm-12">
+        <h2>Dette er en liste over vores services</h2>
+        <small>En kort beskrivelse af hvad "advokaterne" tilbyder af services</small>
+      </div>
       <br><br>
-      <div class="serviceList">
-          <div class="serviceItem" *ngFor="let service of serviceList">
+      <div class="serviceList row justify-content-between">
+          <div class="serviceItem col-sm-12 col-md-5" *ngFor="let service of serviceList">
             <h3>{{service.serviceName}}</h3>
             <p>{{service.serviceContent}}</p>
           </div>

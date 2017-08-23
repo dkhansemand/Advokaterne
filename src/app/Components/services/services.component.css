@@ -11,9 +11,7 @@
 }
 
 #servicesComponent > section .serviceList{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
+    
     margin: 50px 0;
 }
 
@@ -21,6 +19,7 @@
     border-bottom: var(--primary-border);
     margin-bottom: 20px;
 }
+
 
 #servicesComponent .serviceItem h3 {
     font-size: 18px;
