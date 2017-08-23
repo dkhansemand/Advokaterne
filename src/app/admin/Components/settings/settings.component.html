@@ -1,0 +1,17 @@
+<h2>Indstillinger</h2>
+
+<form class="col-sm-6">
+    <div *ngIf="addError" class="alert alert-danger" role="alert">
+        <h2>Fejl</h2>
+        <p>{{errMsg}}</p>
+      </div>
+      <div *ngIf="addSuccess" class="alert alert-success" role="alert">
+          <h2>Ændret!</h2>
+          <p>Indstillingerne er nu blevet gemt</p>
+      </div>
+      <div class="form-group">
+        <label for="address">Adresse</label>
+        <input type="text" [(ngModel)]="settings.addr" name="address" [ngClass]="{'valid': settings.addr !== '', 'invalid': formEmpty}" class="form-control" required>
+        <p *ngIf="settings.addr.length <= 25" id="titleError" class="form-text">Adressen er ikke i korrekt format</p>
+      </div>
+</form>

@@ -24,6 +24,7 @@ import { BlogPostsComponent } from './admin/Components/blog/blog-posts/blog-post
 import { AddPostComponent } from './admin/Components/Blog/add-post/add-post.component';
 import { EditPostComponent } from './admin/Components/Blog/edit-post/edit-post.component';
 import { CategoriesComponent } from './admin/Components/Blog/categories/categories.component';
+import { SettingsComponent } from './admin/Components/settings/settings.component';
 
 export const RouterConfig : Routes = [
   {
@@ -94,6 +95,10 @@ export const RouterConfig : Routes = [
         {
           path: 'Media/Add',
           component: AddMediaComponent
+        },
+        {
+          path: 'Settings',
+          component: SettingsComponent
         },
         {
             path: '',

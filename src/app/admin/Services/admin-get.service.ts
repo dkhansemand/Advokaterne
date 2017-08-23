@@ -40,4 +40,8 @@ export class AdminGetService {
     return this.http.get(AppConfig.api + '/blog/get/categoriesforpost/' + postId).map((res : Response) => res.json())
   }
 
+  getSettings(){
+    return this.http.get(AppConfig.api + '/settings/get/all').map( (res : Response) => res.json())
+  }
+
 }
