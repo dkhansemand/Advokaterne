@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { AdminGetService } from '../../../Services/admin-get.service'
 import { AdminPostService } from '../../../Services/admin-post.service'
-
+import { AppConfig } from '../../../../app.config'
 @Component({
   selector: 'app-edit-service',
   templateUrl: './edit-service.component.html',
@@ -17,12 +17,13 @@ export class EditServiceComponent implements OnInit {
     id : 0,
     name : '',
     content : '',
-    picture: ''
+    shortdesc: '',
+    picture: {id: 0, file: ''}
   }
   formEmpty : boolean = false
   editError : boolean = false
   editSuccess : boolean = false
-
+  mediaPath = AppConfig.mediaUrl
   ngOnInit() {
     this.activeRoute.params.subscribe( params => this.serviceEditId = params.id )
 
@@ -32,7 +33,9 @@ export class EditServiceComponent implements OnInit {
         this.service.id = res.data[0].serviceId
         this.service.name = res.data[0].serviceName
         this.service.content = res.data[0].serviceContent
-        this.service.picture = res.data[0].servicePicture
+        this.service.shortdesc = res.data[0].serviceShortdesc
+        this.service.picture.id = res.data[0].mediaId
+        this.service.picture.file = res.data[0].filePath+res.data[0].filename
       }else{
         console.log('Error:', res)
       }
@@ -54,6 +57,16 @@ export class EditServiceComponent implements OnInit {
         console.log('Error', res)
       }
     })
+  }
+
+  getMedia(item : any){
+    document.getElementById("btnClose").click()
+    this.service.picture = item
+    //console.log('ITEM: ', item)
+  }
+
+  removeMediaItem(){
+    this.service.picture.id = 0
   }
 
 }

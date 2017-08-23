@@ -12,7 +12,7 @@ export class CanActivateRouteGuard implements CanActivate {
   constructor(private auth: AuthService, private router : Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      if(this.auth.isUserAuthenticated()){
+      if(this.auth.isUserAuthenticated() && this.auth.getUserRole() >= 70 ){
           return true
       }else{
           this.router.navigate(['Admin-Login'])

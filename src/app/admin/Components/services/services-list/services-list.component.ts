@@ -36,7 +36,9 @@ export class ServicesListComponent implements OnInit {
     this.adminGetService.getServicesList().subscribe( res => {
       //console.log('Res:', res)
       if(!res.err){
-        this.serviceList.push(res.data)
+        this.serviceList = res.data
+      }else{
+        console.warn('Res Error: ', res.data)
       }
     })
     //console.log('Data', this.serviceList)

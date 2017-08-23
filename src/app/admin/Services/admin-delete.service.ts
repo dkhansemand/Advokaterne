@@ -18,4 +18,8 @@ export class AdminDeleteService {
   deleteCategoryId(catId : number){
     return this.http.get(AppConfig.api + '/blog/delete/category/' + catId).map( (res : Response) => res.json())
   }
+
+  deletePostId(postId : number){
+    return this.http.get(AppConfig.api + '/blog/delete/post/' + postId).map( (res : Response) => res.json() )
+  }
 }

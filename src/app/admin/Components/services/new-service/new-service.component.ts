@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminPostService } from '../../../Services/admin-post.service'
-
+import { AppConfig } from '../../../../app.config'
 @Component({
   selector: 'app-new-service',
   templateUrl: './new-service.component.html',
@@ -13,12 +13,13 @@ export class NewServiceComponent implements OnInit {
   service = {
     name : '',
     content : '',
-    picture: ''
+    shortdesc: '',
+    picture: {id:0,file:''}
   }
   formEmpty : boolean = false
   addError : boolean = false
   addSuccess : boolean = false
-
+  mediaPath = AppConfig.mediaUrl
   ngOnInit() {
   }
 
@@ -49,8 +50,19 @@ export class NewServiceComponent implements OnInit {
     this.service = {
       name : '',
       content : '',
-      picture: ''
+      shortdesc: '',
+      picture: {id:0,file:''}
     }
+  }
+
+  getMedia(item : any){
+    document.getElementById("btnClose").click()
+    this.service.picture = item
+    //console.log('ITEM: ', item)
+  }
+
+  removeMediaItem(){
+    this.service.picture.file = ''
   }
 
 }

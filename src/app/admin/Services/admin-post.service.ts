@@ -19,7 +19,8 @@ export class AdminPostService {
     body.append('id',serviceData.id)
     body.append('name', serviceData.name)
     body.append('content', serviceData.content)
-    body.append('pictureId', serviceData.picture)
+    body.append('shortdesc', serviceData.shortdesc)
+    body.append('pictureId', serviceData.picture.id)
     return this.http.post(AppConfig.api + '/services/post/editservice', body).map((res:Response) => res.json())
   }
 
@@ -28,7 +29,8 @@ export class AdminPostService {
     body.append('id',serviceData.id)
     body.append('name', serviceData.name)
     body.append('content', serviceData.content)
-    body.append('pictureId', serviceData.picture)
+    body.append('shortdesc', serviceData.shortdesc)
+    body.append('pictureId', serviceData.picture.id)
     return this.http.post(AppConfig.api + '/services/post/addservice', body).map((res:Response) => res.json())
   }
 
@@ -59,6 +61,23 @@ export class AdminPostService {
     body.append('picture', pictureId)
     body.append('publish', blogData.publish)
     return this.http.post(AppConfig.api + '/blog/post/newPost', body).map((res : Response) => res.json())
+  }
+
+  editBlogPost(blogData : any){
+    let pictureId : any
+    if(blogData.picture == ''){
+      pictureId = 0
+    }else{
+      pictureId = blogData.picture.id
+    }
+    let body = new FormData()
+    body.append('postId', blogData.postId)
+    body.append('title', blogData.title)
+    body.append('content', blogData.content)
+    body.append('category', blogData.category)
+    body.append('picture', pictureId)
+    body.append('publish', blogData.publish)
+    return this.http.post(AppConfig.api + '/blog/post/editpost', body).map( (res : Response) => res.json())
   }
 
 }

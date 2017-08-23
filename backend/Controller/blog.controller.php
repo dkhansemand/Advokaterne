@@ -105,15 +105,66 @@ class blogcontroller extends DB {
         return ['err' => true, 'data' => 'Ingen data...'];
     }
 
+    public function get_post($postId){
+        if(!empty($postId)){
+            $queryPost = $this->prepQuery("SELECT postID, postTitle, postContent, postPublished, DATE_FORMAT(postDate, '%d-%m-%Y %H:%i') AS postedDate, 
+                                            mediaId, filename, filePath
+                                            FROM blogPosts
+                                            LEFT JOIN media ON postPicture = mediaId
+                                            WHERE postID = :ID");
+            $queryPost->bindParam(':ID', $postId, PDO::PARAM_INT);
+            if($queryPost->execute()){
+                $res = $queryPost->fetch(PDO::FETCH_OBJ);
+                return ['err' => false, 'data' => $res, 'Sanitized' => html_entity_decode($res->postContent)];
+            }
+        }
+        return ['err' => true, 'data' => 'Ingen data...'];
+    }
+
     public function get_categoriesforpost($postId){
         if(!empty($postId)){
             $queryPostCategories = $this->prepQuery("SELECT categoryId, categoryName FROM blogCategories
                                                         INNER JOIN blogCategory ON category = categoryId
                                                         WHERE post = :ID");
+            $queryPostCategories->bindParam(':ID', $postId, PDO::PARAM_INT);
             if($queryPostCategories->execute()){
                 return ['err' => false, 'data' => $queryPostCategories->fetchAll(PDO::FETCH_OBJ)];
             }
         }
         return ['err' => true, 'data' => 'Kan ikke hente data, mangler ID'];
+    }
+
+    public function delete_post($postId){
+        if(!empty($postId)){
+            $queryDeletePost = $this->prepQuery("DELETE FROM blogCategories WHERE post = :ID;
+                                                    DELETE FROM blogPosts WHERE postID = :ID;
+                                                ");
+            $queryDeletePost->bindParam(':ID', $postId, PDO::PARAM_INT);
+            if($queryDeletePost->execute()){
+                return ['err' => false, 'data' => 'Blog indlæg er nu blevet slettet'];
+            }
+        }
+        return ['err' => true, 'data' => 'Kan ikke hente data, mangler ID'];
+    }
+
+    public function post_editPost($postData){
+        if(!empty($postData)){
+            $publish = $postData['publish'] == 'true' ? 1 : 0;
+            $queryEditPost = $this->prepQuery("UPDATE blogPosts SET postTitle = :TITLE, 
+                                                                        postContent = :CONTENT, 
+                                                                        postPublished = :PUB, 
+                                                                        postPicture = :PIC
+                                                    WHERE postID = :ID");
+            $queryEditPost->bindParam(':TITLE', $postData['title'], PDO::PARAM_STR);
+            $queryEditPost->bindParam(':CONTENT', $postData['content'], PDO::PARAM_STR);
+            $queryEditPost->bindParam(':PUB', $publish, PDO::PARAM_INT);
+            $queryEditPost->bindParam(':PIC', $postData['picture'], PDO::PARAM_INT);
+            $queryEditPost->bindParam(':ID', $postData['postId'], PDO::PARAM_INT);
+            if($queryEditPost->execute()){
+                return ['err' => false, 'data' => 'Blog indlæg er nu blevet ændret'];
+            }
+           return ['err' => false, 'data' => $postData];
+        }
+        return ['err' => true, 'data' => 'Mangler data'];
     }
 }

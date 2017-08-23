@@ -19,7 +19,7 @@
         <td>{{post.postPublished == 1 ? 'Udgivet' : 'kladde'}}</td>
         <td>
             <a [routerLink]="['/Admin/Blog/Post/Edit/', post.postID]" class="btn btn-sm btn-primary">Ret</a>
-            <button class="btn btn-sm btn-danger" >Slet</button>
+            <button class="btn btn-sm btn-danger" (click)="deletePost(post.postID)">Slet</button>
         </td>
       </tr>
     </tbody>

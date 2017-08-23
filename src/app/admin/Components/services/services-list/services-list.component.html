@@ -9,9 +9,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let service of serviceList[0]">
+    <tr *ngFor="let service of serviceList">
       <td>{{service.serviceName}}</td>
-      <td>{{service.servicePicture || 'Intet billede'}}</td>
+      <td>{{service.filename || 'Intet billede'}}</td>
       <td>
         <a [routerLink]="['/Admin/Services/Edit/', service.serviceId]" class="btn btn-sm btn-primary">Ret</a>
         <button class="btn btn-sm btn-danger" (click)="deleteId(service.serviceId)">Slet</button>

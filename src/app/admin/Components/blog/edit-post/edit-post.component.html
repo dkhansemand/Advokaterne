@@ -1,3 +1,65 @@
-<p>
-  edit-post works!
-</p>
+<h1>Ret blog indlæg</h1>
+<div class="row">
+    <form class="col-sm-8">
+      <div *ngIf="addError" class="alert alert-danger" role="alert">
+        <h2>Fejl</h2>
+        <p>{{errMsg}}</p>
+      </div>
+      <div *ngIf="addSuccess" class="alert alert-success" role="alert">
+          <h2>Ændret!</h2>
+          <p>Blog indlægget er nu blevet ændret</p>
+        </div>
+      <div class="form-group">
+        <label for="blogTitle">Overskrift</label>
+        <input type="text" [(ngModel)]="blogPost.title" name="blogTitle" [ngClass]="{'valid': blogPost.title !== '', 'invalid': formEmpty}" class="form-control" value="{{blogPost.title}}" required>
+        <p *ngIf="blogPost.title.length <= 25" id="titleError" class="form-text">Titel må maks. være 25 tegn</p>
+      </div>
+      <div class="form-group">
+        <label for="blogContent">Indhold</label>
+        <textarea id="blogContent" [(ngModel)]="blogPost.content" col="10" rows="10" name="blogContent" [ngClass]="{'valid': blogPost.content !== '', 'invalid': formEmpty}" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="categorySelect">Tilføj/fjern en eller flere Kategorier - Virker ikke på nuværende tidpunkt</label>
+          <select multiple [(ngModel)]="blogPost.category" name="category[]" class="form-control" id="categorySelect" disabled>
+              <option *ngFor="let category of categoryList; let i = index"  value="{{category.categoryId}}">{{category.categoryName}}</option>
+            </select>
+      </div>
+      <div class="form-group">
+          <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <input type="checkbox" [(ngModel)]="blogPost.publish" name="publish" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description font-weight-bold">Udgiv blog indlæg</span>
+            </label>
+      </div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mediaModalSelector">
+          Tilføj billede
+        </button>
+        <div *ngIf="blogPost.picture !== ''">
+          <button type="button" class="btn btn-link pull-right" aria-label="Close" (click)="removeMediaItem()">
+              <span aria-hidden="true"><small>Fjern billede &times;</small></span>
+            </button>
+            <img src="{{mediaPath+blogPost.picture.file}}" alt="Intet billede valgt" height="120" width="150" class="img-thumbnail">
+        </div>
+        <br>
+      <button type="submit" class="btn btn-md btn-success pull-right" (click)="editPost()">Ret</button>
+    </form>
+  </div>
+
+  <div class="modal" id="mediaModalSelector">
+      <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Vælg billede</h5>
+            <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <app-media-select (selectedItem)="getMedia($event)"></app-media-select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

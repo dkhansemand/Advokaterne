@@ -16,9 +16,41 @@
         <p *ngIf="!validName(service.name)" id="nameError" class="form-text" [style.color]="red">Service navn må maks. være x tegn</p>
       </div>
       <div class="form-group">
+        <label for="serviceDesc">Kort beskrivelse</label>
+        <input type="text" [(ngModel)]="service.shortdesc" name="serviceDesc" [ngClass]="{'valid': service.shortdesc !== '', 'invalid': formEmpty}" class="form-control" value="{{service.shortdesc}}" required>
+        
+      </div>
+      <div class="form-group">
         <label for="serviceContent">Service beskrivelse</label>
         <textarea [(ngModel)]="service.content" col="10" rows="10" name="serviceContent" [ngClass]="{'valid': service.content !== '', 'invalid': formEmpty}" class="form-control" required></textarea>
       </div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mediaModalSelector">
+        Tilføj billede
+      </button>
+      <div *ngIf="service.picture.id !== 0">
+        <button type="button" class="btn btn-link pull-right" aria-label="Close" (click)="removeMediaItem()">
+            <span aria-hidden="true"><small>Fjern billede &times;</small></span>
+          </button>
+          <img src="{{mediaPath+service.picture.file}}" alt="Intet billede valgt" height="120" width="150" class="img-thumbnail">
+      </div>
       <button type="submit" class="btn btn-info pull-right" (click)="editService()">Ret</button>
     </form>
+  </div>
+  <div class="modal" id="mediaModalSelector">
+    <div class="modal-dialog modal-lg" role="dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Vælg billede</h5>
+          <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-media-select (selectedItem)="getMedia($event)"></app-media-select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
