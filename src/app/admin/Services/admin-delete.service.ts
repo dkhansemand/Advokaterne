@@ -22,4 +22,8 @@ export class AdminDeleteService {
   deletePostId(postId : number){
     return this.http.get(AppConfig.api + '/blog/delete/post/' + postId).map( (res : Response) => res.json() )
   }
+
+  deleteMediaId(mediaId : number){
+    return this.http.get(AppConfig.api + '/media/delete/item/' + mediaId).map( (res : Response) => res.json())
+  }
 }

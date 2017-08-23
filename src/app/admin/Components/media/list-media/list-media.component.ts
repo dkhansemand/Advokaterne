@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminGetService } from '../../../Services/admin-get.service'
+import { AdminDeleteService } from '../../../Services/admin-delete.service'
 import { AppConfig } from '../../../../app.config'
 @Component({
   selector: 'app-list-media',
@@ -8,7 +9,7 @@ import { AppConfig } from '../../../../app.config'
 })
 export class ListMediaComponent implements OnInit {
 
-  constructor(private adminGetService : AdminGetService) { }
+  constructor(private adminGetService : AdminGetService, private adminDeleteService : AdminDeleteService) { }
 
   mediaPath : string = AppConfig.mediaUrl
   mediaList : Array<string>
@@ -19,6 +20,25 @@ export class ListMediaComponent implements OnInit {
         console.log('Error: ', res.err)
       }else{
         this.mediaList = res.data
+      }
+    })
+  }
+
+  deleteMediaItem(mediaId : number){
+    this.adminDeleteService.deleteMediaId(mediaId).subscribe( res => {
+      if(confirm('Er du sikker?')){
+        if(res.err){
+          console.warn('Res Error: ', res.data)
+        }else{
+          this.mediaList = []
+          this.adminGetService.getMediaList().subscribe(res => {
+            if(res.err){
+              console.log('Error: ', res.err)
+            }else{
+              this.mediaList = res.data
+            }
+          })
+        }
       }
     })
   }

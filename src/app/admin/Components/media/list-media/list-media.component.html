@@ -3,8 +3,10 @@
 <hr>
 <div class="row">
   <div *ngFor="let item of mediaList" class="col-sm-4">
+    <button type="button" class="btn btn-link pull-right" aria-label="Close" (click)="deleteMediaItem(item.id)">
+      <span aria-hidden="true"><small>Slet billede &times;</small></span>
+    </button>
     <img src="{{mediaPath+item.file}}" alt="Test" class="img-thumbnail">
-    
   </div>
 
 </div>

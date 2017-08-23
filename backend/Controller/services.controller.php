@@ -8,7 +8,7 @@ class servicescontroller extends DB {
 
     public function get_list(){
         
-        $queryServices = $this->prepQuery("SELECT serviceId, serviceName, serviceContent, serviceShortdesc mediaId, filename, filePath 
+        $queryServices = $this->prepQuery("SELECT serviceId, serviceName, serviceContent, serviceShortdesc, mediaId, filename, filePath 
                                             FROM services 
                                             LEFT JOIN media ON mediaId = servicePicture
                                             ORDER BY serviceName ASC");

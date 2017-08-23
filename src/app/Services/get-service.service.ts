@@ -12,4 +12,18 @@ export class GetService {
   getServicesList(){
     return this.http.get(AppConfig.api + '/services/get/list').map( (res:Response) => res.json())
   }
+
+  getMediaListByTag(tag : string){
+    return this.http.get(AppConfig.api + '/media/get/bytag/'+tag).map((res : Response) => res.json())
+  }
+
+  getMediaById(mediaId : number){
+    return this.http.get(AppConfig.api + '/media/get/itembyid/'+mediaId).map((res : Response) => res.json())
+  }
+
+  getBlogPosts(){
+    return this.http.get(AppConfig.api + '/blog/get/posts').map((res : Response) => res.json())
+  }
+
+
 }

@@ -74,7 +74,11 @@ h2{
     margin: 10px 0;
     padding: 10px;
 }
-
+#homeComponent > section section:nth-child(1){
+    grid-column-end: 2;
+    overflow-wrap: break-word;
+    max-width: 100vh;
+}
 #homeComponent > section section:nth-child(2) article{
     padding: 10px;
     border-bottom: var(--primary-border);

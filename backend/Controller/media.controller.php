@@ -63,7 +63,7 @@ class mediacontroller extends DB{
     }
 
     public function get_list() : array{
-        $queryMedia = $this->prepQuery("SELECT mediaId, filename, filePath FROM media");
+        $queryMedia = $this->prepQuery("SELECT mediaId, filename, filePath, mediaTag FROM media");
         if($queryMedia->execute()){
             $mediaItems = $queryMedia->fetchAll(PDO::FETCH_OBJ);
             $mediaList = [];
@@ -76,6 +76,28 @@ class mediacontroller extends DB{
             }
             return ['err' => false, 'data' => $mediaList];
         }
+    }
+
+    public function get_itembyid($mediaId){
+        if(!empty($mediaId)){
+            $queryMediaById = $this->prepQuery("SELECT mediaId, filename, filePath, mediaTag FROM media WHERE mediaId = :ID");
+            $queryMediaById->bindParam(':ID', $mediaId, PDO::PARAM_INT);
+            if($queryMediaById->execute()){
+                return ['err' => false, 'data' => $queryMediaById->fetchAll(PDO::FETCH_OBJ)];
+            }
+        }
+        return ['err' => true, 'data' => 'Intet ID angivet...'];
+    }
+
+    public function get_bytag($tag){
+        if(!empty($tag)){
+            $queryMediaByTag = $this->prepQuery("SELECT mediaId, filename, filePath FROM media WHERE mediaTag = :TAG");
+            $queryMediaByTag->bindParam(':TAG', $tag, PDO::PARAM_STR);
+            if($queryMediaByTag->execute()){
+                return ['err' => false, 'data' => $queryMediaByTag->fetchAll(PDO::FETCH_OBJ)];
+            }
+        }   
+        return ['err' => true, 'data' => 'Ingen tag defineret'];
     }
 
     public function delete_item(int $mediaId) : array{
