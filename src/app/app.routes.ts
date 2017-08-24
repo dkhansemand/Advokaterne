@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router'
 //import of gaurds
 import { CanActivateRouteGuard } from './Guards/canActivate.guard'
+import { CheckRoleRouteGuard } from './Guards/checkRole.gaurd'
 //Import of Components
 import { AppComponent } from './app.component'
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -58,19 +59,23 @@ export const RouterConfig : Routes = [
     children : [
       {
         path: 'Blog/Posts',
-        component: BlogPostsComponent
+        component: BlogPostsComponent,
+        canActivate: [CheckRoleRouteGuard]
       },
       {
         path: 'Blog/Post/Add',
-        component: AddPostComponent
+        component: AddPostComponent,
+        canActivate: [CheckRoleRouteGuard]
       },
       {
         path: 'Blog/Post/Edit/:id',
-        component: EditPostComponent
+        component: EditPostComponent,
+        canActivate: [CheckRoleRouteGuard]
       },
       {
         path: 'Blog/Categories',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        canActivate: [CheckRoleRouteGuard]
       },
         {
             path: 'Dashboard',
@@ -78,15 +83,18 @@ export const RouterConfig : Routes = [
         },
         {
             path: 'Services',
-            component: ServicesListComponent
+            component: ServicesListComponent,
+            canActivate: [CheckRoleRouteGuard]
         },
         {
             path: 'Services/Edit/:id',
-            component: EditServiceComponent
+            component: EditServiceComponent,
+            canActivate: [CheckRoleRouteGuard]
         },
         {
           path: 'Services/New',
-          component: NewServiceComponent
+          component: NewServiceComponent,
+          canActivate: [CheckRoleRouteGuard]
         },
         {
           path: 'Media',

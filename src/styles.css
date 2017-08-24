@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
     --primary-text-color: #58595b;
+    --secound-text-color: #a1a1a1;
     --primary-border: 1.5px solid var(--primary-text-color);
 }
 *{
@@ -112,6 +113,10 @@ footer{
 }
 footer a {
     margin: 5px;
+}
+
+footer a:hover{
+    color: var(--secound-text-color);
 }
 
 .valid {

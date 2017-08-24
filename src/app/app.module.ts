@@ -14,7 +14,7 @@ import { AdminPostService } from './admin/Services/admin-post.service'
 import { AdminDeleteService } from './admin/Services/admin-delete.service'
 //import of gaurds
 import { CanActivateRouteGuard } from './Guards/canActivate.guard'
-
+import { CheckRoleRouteGuard } from './Guards/checkRole.gaurd'
 //Import of Components
 import { AppComponent } from './app.component'
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -82,6 +82,7 @@ import { SettingsComponent } from './admin/Components/settings/settings.componen
     AuthService,
     GetService,
     CanActivateRouteGuard,
+    CheckRoleRouteGuard,
     AdminGetService,
     AdminPostService,
     AdminDeleteService
