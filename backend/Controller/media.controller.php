@@ -123,6 +123,6 @@ class mediacontroller extends DB{
                 return ['err' => true, 'data' => 'Kunne ikke finde filen i databasen'];
             }
         }
-        return ['err' => true, 'data' => ''];
+        return ['err' => true, 'data' => 'Ingen data modtaget'];
     }
 }
