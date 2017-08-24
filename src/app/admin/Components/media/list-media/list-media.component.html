@@ -2,6 +2,10 @@
 <a routerLink="/Admin/Media/Add" class="btn btn-outline-primary">Tilføj nyt billede</a>
 <hr>
 <div class="row">
+    <div *ngIf="addError" class="alert alert-danger" role="alert">
+        <h2>Fejl</h2>
+        <p>{{errMsg}}</p>
+    </div>
   <div *ngFor="let item of mediaList" class="col-sm-4">
     <button type="button" class="btn btn-link pull-right" aria-label="Close" (click)="deleteMediaItem(item.id)">
       <span aria-hidden="true"><small>Slet billede &times;</small></span>

@@ -106,18 +106,18 @@ class mediacontroller extends DB{
             $queryMedia->bindParam(':ID', $mediaId, PDO::PARAM_INT);
             if($queryMedia->execute() && $queryMedia->rowCount() > 0){
                 $mediaItem = $queryMedia->fetch(PDO::FETCH_OBJ);
-                if(file_exists('./uploads/'.$mediaItem->filename)){
-                    if(unlink('./uploads/'.$mediaItem->filename)){
-                        $queryDelete = $this->prepQuery("DELETE FROM media WHERE mediaId = :ID");
-                        $queryDelete->bindParam(':ID', $mediaId, PDO::PARAM_INT);
-                        if($queryDelete->execute()){
+                $queryDelete = $this->prepQuery("DELETE FROM media WHERE mediaId = :ID");
+                $queryDelete->bindParam(':ID', $mediaId, PDO::PARAM_INT);
+                if($queryDelete->execute()){
+                    if(file_exists('./uploads/'.$mediaItem->filename)){
+                        if(unlink('./uploads/'.$mediaItem->filename)){
                             return ['err' => false, 'data' => 'Filen er nu blevet slettet fra serveren.'];
+                        }else{
+                            return ['err' => true, 'data' => 'Filen kunne ikke slettes på serveren.'];
                         }
                     }else{
-                        return ['err' => true, 'data' => 'Filen kunne ikke slettes på serveren.'];
+                        return ['err' => true, 'data' => 'Det var ikke muligt at finde pågældende fil på serveren.'];
                     }
-                }else{
-                    return ['err' => true, 'data' => 'Det var ikke muligt at finde pågældende fil på serveren.'];
                 }
             }else{
                 return ['err' => true, 'data' => 'Kunne ikke finde filen i databasen'];

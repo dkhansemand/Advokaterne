@@ -13,7 +13,8 @@ export class ListMediaComponent implements OnInit {
 
   mediaPath : string = AppConfig.mediaUrl
   mediaList : Array<string>
-
+  addError : boolean = false
+  errMsg : string
   ngOnInit() {
     this.adminGetService.getMediaList().subscribe(res => {
       if(res.err){
@@ -29,7 +30,10 @@ export class ListMediaComponent implements OnInit {
       if(confirm('Er du sikker?')){
         if(res.err){
           console.warn('Res Error: ', res.data)
+          this.addError = true
+          this.errMsg = res.data
         }else{
+          this.addError = false
           this.mediaList = []
           this.adminGetService.getMediaList().subscribe(res => {
             if(res.err){

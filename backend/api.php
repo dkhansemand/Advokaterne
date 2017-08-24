@@ -16,7 +16,7 @@
     //
     //var_dump($POST);
     if(!empty($router->getRoute())){
-        $returnData = ['URI' => $router->getUri(), 'params' => $router->getParams(), 'Controller' => $router->getController(), 'Route' => $router->getRoute(), 'prefix' => $router->getMethodPrefix() ];
+        //$returnData = ['URI' => $router->getUri(), 'params' => $router->getParams(), 'Controller' => $router->getController(), 'Route' => $router->getRoute(), 'prefix' => $router->getMethodPrefix() ];
         //print_r($returnData);
         if(file_exists('./Controller/' . $router->getController() . '.controller.php')){
             require_once './Controller/'.$router->getController().'.controller.php';
