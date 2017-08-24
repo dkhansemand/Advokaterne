@@ -12,7 +12,7 @@
       <div class="form-group">
         <label for="blogTitle">Overskrift</label>
         <input type="text" [(ngModel)]="blogPost.title" name="blogTitle" [ngClass]="{'valid': blogPost.title !== '', 'invalid': formEmpty}" class="form-control" value="{{blogPost.title}}" required>
-        <p *ngIf="blogPost.title.length <= 25" id="titleError" class="form-text">Titel må maks. være 25 tegn</p>
+        <p *ngIf="blogPost.title.length >= 25" id="titleError" class="form-text">Titel må maks. være 25 tegn</p>
       </div>
       <div class="form-group">
         <label for="blogContent">Indhold</label>
@@ -63,3 +63,5 @@
         </div>
       </div>
     </div>
+
+    

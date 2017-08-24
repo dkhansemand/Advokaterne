@@ -1,13 +1,21 @@
 <div class="container" id="blogComponent">
-  <section>
-    <article>
-      <h2>blogpost title</h2>
-      <p>content</p>
-    </article>
-  </section>
-  <section>
-    <aside>
-      blogposts
-    </aside>
-  </section>
+  <div class="row">
+    <section class="col-sm-12 col-md-8">
+      <div *ngFor="let post of blogPostList; let i = index">
+        <article *ngIf="i < 3" class="col-sm-11">
+          <div class="row">
+            <h2 class="col-sm-12">{{post.postTitle}}</h2>
+            <p class="col-sm-12">{{getDate(post.postDate) | date: 'd MMM y'}}</p>
+            <p class="text-truncate col-sm-6" style="max-width:50%">{{post.postContent}}</p>
+            <img *ngIf="i == 0" [src]="mediaPath+post.filePath+post.filename" height="150" alt="" class="col-sm-4">
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="col-sm-12 col-md-4">
+      <aside>
+        blogposts
+      </aside>
+    </section>
+  </div>
 </div>

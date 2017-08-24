@@ -9,8 +9,8 @@
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
-        <input type="email" [(ngModel)]="loginData.email" name="email" [ngClass]="{'valid': loginData.email !== '', 'invalid': loginEmpty && !validEmail(loginData.email)}" class="form-control" aria-describedby="emailHelp" placeholder="E-mail" required>
-        <p *ngIf="!validEmail(loginData.email)" id="emailError" class="form-text" [style.color]="red">E-mail skal udfyldes og være i korrekt format</p>
+        <input type="text" [(ngModel)]="loginData.email" name="email" [ngClass]="{'valid': loginData.email !== '', 'invalid': loginEmpty && !validEmail(loginData.email)}" class="form-control" aria-describedby="emailHelp" placeholder="E-mail eller brugernavn" required>
+        <p *ngIf="!validEmail(loginData.email)" id="emailError" class="form-text" [style.color]="red">E-mail eller brugernavn skal udfyldes og være i korrekt format</p>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>

@@ -94,13 +94,19 @@ class blogcontroller extends DB {
     }
 
     public function get_posts(){
-        $queryPosts = $this->prepQuery("SELECT postID, postTitle, postContent, postPublished, DATE_FORMAT(postDate, '%d-%m-%Y %H:%i') AS postedDate, 
+        $queryPosts = $this->prepQuery("SELECT postID, postTitle, postContent, postPublished, postDate, DATE_FORMAT(postDate, '%d-%m-%Y %H:%i') AS postedDate, 
                                             mediaId, filename, filePath
                                             FROM blogPosts
                                             LEFT JOIN media ON postPicture = mediaId
                                             ORDER BY postDate DESC");
         if($queryPosts->execute()){
-            return ['err' => false, 'data' => $queryPosts->fetchAll(PDO::FETCH_OBJ)];
+            $posts = $queryPosts->fetchAll(PDO::FETCH_OBJ);
+            $sanitized = [];
+            foreach($posts as $post){
+                array_push($sanitized, html_entity_decode($post->postContent));
+                
+            }
+            return ['err' => false, 'data' => $posts, 'decoded' => $sanitized];
         }
         return ['err' => true, 'data' => 'Ingen data...'];
     }

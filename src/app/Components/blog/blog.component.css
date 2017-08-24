@@ -1,9 +1,7 @@
 #blogComponent{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    margin: 25px 10px;
 }
-#blogComponent > section {
-    margin-top: 50px;
-    margin-bottom: 50px;
+article {
+    border-bottom: var(--primary-border);
     padding: 10px;
 }

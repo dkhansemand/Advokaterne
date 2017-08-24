@@ -29,8 +29,11 @@ export class AdminLoginComponent implements OnInit {
     if(this.loginData.email !== '' && this.loginData.password !== ''){
       if(!this.auth.login(this.loginData.email, this.loginData.password)){
         this.loginError = true
+      }else{
+        this.loginError = false
       }
     }else{
+      this.loginError = true
       this.loginEmpty = true
     }
   }
